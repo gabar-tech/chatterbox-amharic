@@ -99,8 +99,8 @@ control characters. It's a subset of what we run in production.
 
 ```python
 from amharic_text import normalize, split_sentences
-normalize("ዶ/ር አበበ በ2016 ዓ.ም. 75% አገኙ።")
-# 'ዶክተር አበበ በሁለት ሺህ አስራ ስድስት ኣመተ ምህረት ሰባ አምስት በመቶ አገኙ።'
+normalize("ዶ/ር አበበ በ2018 ዓ.ም በተደረገው ምርጫ 75% ድምፅ አገኙ።")
+# 'ዶክተር አበበ በሁለት ሺህ አስራ ስምንት ኣመተ ምህረት በተደረገው ምርጫ ሰባ አምስት በመቶ ድምጽ አገኙ።'
 ```
 
 ## Training data
