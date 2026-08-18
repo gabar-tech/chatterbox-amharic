@@ -1,0 +1,10 @@
+=== corpus audit: /workspace/data/speaker-clean (assembled training directory, before prepare) ===
+prefix     clips    hours  speakers  mean_s  sample_rate   licence       source
+-------------------------------------------------------------------------------
+wxl        40921   190.93       587   16.80  24000x40921   CC-BY-SA-4.0  WaxalNLP Amharic (Digital Umuganda / Google)
+cv          1055     1.45        23    4.95  24000x1055    CC0-1.0       Common Voice Amharic
+ih           573     1.25         1    7.88  44100x573     owned by us   in-house studio recordings
+-------------------------------------------------------------------------------
+TOTAL      42549   193.63       611
+
+Measured from the files (durations, sample rates, .spk sidecars). Prefixes present: wxl, cv, ih — nothing else. All audio is resampled to 24 kHz by the trainer's prepare step.

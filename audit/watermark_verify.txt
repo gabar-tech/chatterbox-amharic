@@ -1,0 +1,24 @@
+loaded PerthNet (Implicit) at step 250,000
+01_finetuned.wav                 confidence=1.000 OK
+02_finetuned.wav                 confidence=1.000 OK
+03_finetuned.wav                 confidence=1.000 OK
+04_finetuned.wav                 confidence=1.000 OK
+05_finetuned.wav                 confidence=1.000 OK
+06_finetuned.wav                 confidence=1.000 OK
+07_finetuned.wav                 confidence=1.000 OK
+08_finetuned.wav                 confidence=1.000 OK
+WATERMARK OK on all 8 files (threshold 0.5).
+loaded PerthNet (Implicit) at step 250,000
+01_stock.wav                     confidence=1.000 OK
+02_stock.wav                     confidence=1.000 OK
+03_stock.wav                     confidence=1.000 OK
+04_stock.wav                     confidence=1.000 OK
+05_stock.wav                     confidence=1.000 OK
+06_stock.wav                     confidence=1.000 OK
+07_stock.wav                     confidence=1.000 OK
+08_stock.wav                     confidence=1.000 OK
+WATERMARK OK on all 8 files (threshold 0.5).
+WATERMARK OK on all 99 files (threshold 0.5).
+loaded PerthNet (Implicit) at step 250,000
+reference.wav                    confidence=0.000 FAIL
+(reference.wav FAIL above is the expected negative control)

@@ -1,0 +1,10 @@
+train clips: 41685
+eval clips:  339
+clip overlap: 0
+eval clips with non-allowlisted prefix: 0
+train speakers: 606 (train clips not mappable to speaker-dir: 0)
+eval speakers:  4
+speaker overlap: 0
+eval sentences also present in train (normalized): 0
+eval clips by prefix: {'wxl': 339}
+HELD OUT: eval ∩ train = ∅ at clip, speaker and sentence level; all eval stems are ih_/wxl_/cv_.

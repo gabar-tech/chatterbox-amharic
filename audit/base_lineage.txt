@@ -1,0 +1,9 @@
+/workspace/training/tts-chatterbox/.venv/lib/python3.11/site-packages/diffusers/models/lora.py:393: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+loaded PerthNet (Implicit) at step 250,000
+subject: /workspace/gabar-tech/chatterbox-amharic (adapter merged onto /workspace/base-v3)
+layernorm tensors compared: 62
+  mtl-v3       max|Δ|=0.000e+00  exact-equal tensors=62/62
+  english      max|Δ|=1.294e+00  exact-equal tensors=0/62
+LINEAGE: base = mtl-v3
+EXPECT mtl-v3: OK
