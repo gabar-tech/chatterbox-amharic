@@ -236,11 +236,11 @@ amharic_tts = importlib.util.module_from_spec(spec); spec.loader.exec_module(amh
 
 tts = amharic_tts.load_amharic_tts(device="cuda")   # downloads base v3 (pinned) + adapter
 wav = tts.generate(
-    "ሰላም! ይህ ከጽሑፍ በቀጥታ የተፈጠረ የአማርኛ ድምፅ ነው። ዛሬ 2016 ዓ.ም. ነው?",
+    "ሰላም! ይህ ከጽሑፍ በቀጥታ የተፈጠረ የአማርኛ ድምፅ ነው። ዛሬ ነሐሴ 11 ቀን 2018 ዓ.ም. ነው።",
     audio_prompt_path="reference.wav",     # ~10 s of the voice to clone, with consent
     temperature=0.6, cfg_weight=0.5)
 torchaudio.save("out.wav", wav, tts.sr)      # 24 kHz, PerTh-watermarked
-print(tts.normalize("ዛሬ 2016 ዓ.ም. ነው?"))   # what the model actually read
+print(tts.normalize("ዛሬ ነሐሴ 11 ቀን 2018 ዓ.ም. ነው።"))   # what the model actually read
 ```
 
 Or from a checkout: `python amharic_tts.py "ሰላም ዓለም።" --ref reference.wav --out out.wav`.
