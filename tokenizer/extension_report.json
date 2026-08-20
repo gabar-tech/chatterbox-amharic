@@ -250,5 +250,5 @@
   ],
   "sentences_checked": 339,
   "unknown_token_id": 1,
-  "tokenizer_path": "/workspace/runs/chatterbox-am-oss-v1/tokenizer/tokenizer.json"
+  "tokenizer_path": "tokenizer/tokenizer.json"
 }
