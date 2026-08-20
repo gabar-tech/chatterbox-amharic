@@ -301,24 +301,14 @@ synthetic Amharic right now.
 
 ## Risks and misuse
 
-This model clones a voice from about ten seconds of audio, in a language with
-well over 100 million speakers, in a region where synthetic political speech
-is a real problem. Until now Amharic speakers had an accidental protection:
-mainstream voice cloning couldn't read Fidel. This release takes that away,
-and we're the ones doing it. We think it's the right call: Amharic speakers
-should have the same accessibility, education and media tools everyone else
-has, and this capability was coming whether or not we built it. But there is
-another side, and we won't pretend otherwise. The misuse we expect first is
-audio impersonation of politicians, clergy and journalists, and outside the
-PerTh watermark these outputs carry there is essentially no detection
-infrastructure for Amharic.
+This model clones a voice from about ten seconds of audio. It can be used to
+make someone appear to say something they never said, in any context, and we
+have no way to prevent that.
 
 Publishing weights means giving up control; a licence clause doesn't change
 that. What we could do, we did: outputs are watermarked and we kept that path
 intact; the acceptable-use terms above are conditions, not suggestions; every
-voice in the training data was recorded under a licence that allows this. If
-you work on detection or verification for Amharic synthetic speech, that's
-the most useful thing anyone could add here, and we'll help: contact@gabar.io.
+voice in the training data was recorded under a licence that allows this.
 
 ## Attribution
 
