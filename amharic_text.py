@@ -59,8 +59,12 @@ _REPEATED_PUNCT_RE = re.compile(r"([.!?,;])\1+")
 _HASHTAG_MENTION_RE = re.compile(r"[#@](\w+)")
 _BAD_CHARS_RE = re.compile(r"[/\\|_*&~^+=<>{}\[\]]")
 _GEEZ_PUNCT_RUN_RE = re.compile(r"[፠-፨](?:\s*[፠-፨])+")
-_TYPO_COLON_DASH_RE = re.compile(r":[-–—]")   # "ስራ:- ..." list/heading artefact, not punctuation
-_GEEZ_PUNCT_MAP = {0x1360: "።", 0x1361: " ", 0x1364: "፣", 0x1365: "፣",
+_TYPO_COLON_DASH_RE = re.compile(r":[-–—]")
+# `::` is the ordinary way people type the Ethiopic full stop ። on an ASCII
+# keyboard. Mapping each `:` separately turned a sentence end into a short
+# pause, so consume the pair first.
+_ASCII_FULL_STOP_RE = re.compile(r"::")   # "ስራ:- ..." list/heading artefact, not punctuation
+_GEEZ_PUNCT_MAP = {0x1360: "።", 0x1361: " ", 0x1365: "፣",
                    0x1366: "፣", 0x1367: "?", 0x1368: "።"}
 
 
@@ -81,6 +85,7 @@ def _post_expansion_cleanup(text: str) -> str:
     ones (``፡፡`` and ``፠``/``፨`` → ``።``, ``፡`` → space, ``፤``/``፥``/``፦`` →
     ``፣``, ``፧`` → ``?``)."""
     text = _TYPO_COLON_DASH_RE.sub(" ", text)
+    text = _ASCII_FULL_STOP_RE.sub("።", text)
     text = _BAD_CHARS_RE.sub(" ", text)
     text = _HASHTAG_MENTION_RE.sub(r"\1", text)
     text = _GEEZ_PUNCT_RUN_RE.sub("። ", text)
@@ -383,6 +388,9 @@ _PUNCT_MAP = {".": "።", ",": "፣", ";": "፤", ":": "፤",
               "።": "።", "፣": "፣", "፤": "፤", "?": "?", "!": "!"}
 _KEEP = "።፣፤?!"
 _MARK_RUN_RE = re.compile("([" + _KEEP + r"])(?:\s*[" + _KEEP + "])+")
+# A sentence mark typed straight against the next word ("እዩ።እቲ") leaves the
+# model no boundary to breathe at; give it the space the writer omitted.
+_MARK_GLUED_RE = re.compile("([" + _KEEP + r"])(?=[\w\u1200-\u137F])")
 
 
 def canonicalize_punctuation(text: str) -> str:
@@ -395,7 +403,7 @@ def canonicalize_punctuation(text: str) -> str:
             continue
         else:
             out.append(ch)
-    return _MARK_RUN_RE.sub(r"\1", "".join(out))
+    return _MARK_GLUED_RE.sub(r"\1 ", _MARK_RUN_RE.sub(r"\1", "".join(out)))
 
 
 # ── public entry points ─────────────────────────────────────────────────

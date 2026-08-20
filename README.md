@@ -164,12 +164,31 @@ extended vocabulary it's off, in training and at inference. The loader chunks
 by sentence instead, which handles the common failure (T3 stopping at the
 first sentence-final mark).
 
-*Front-end parity.* We ran `amharic_text.py` side by side with our internal
-label pipeline over every training transcript as a sanity check:
-FRONTEND PARITY OK: released amharic_text.normalize agrees with the internal label pipeline on 42535/42557 texts (99.948%); 22 inspected differences. The differences are in
-[`audit/frontend_parity.txt`](audit/frontend_parity.txt): number ranges,
-where the released file says "እስከ" and the internal one didn't. No
-gemination marks were used, see Limitations.
+*Train/inference parity.* The training labels were produced by this exact
+file, and the loader runs the same function on every input — so what you type
+and what the model learned from go through identical code. You can check that
+yourself rather than take our word for it:
+
+```bash
+python -c "import hashlib,json;print(hashlib.sha256(open('amharic_text.py','rb').read()).hexdigest());print(json.load(open('training_config.json'))['label_frontend_sha256'])"
+```
+
+Those two differ, on purpose and once: after training we fixed a dotted
+abbreviation's trailing dot mid-sentence (as in `… ዓ.ም. የአገሪቱ …`) being read
+as a full stop. The labels were built with the SHA recorded as
+`label_frontend_sha256`; the shipped file's SHA is recorded beside it as
+`label_frontend_sha256_shipped`, with the reason, so the difference is stated
+rather than left to be discovered. The only effect on the model is one fewer
+spurious pause. `training_config.json` also carries
+these fields so a later edit cannot pass
+silently.
+
+We also check the file against properties, over every transcript the model
+trained on: normalizing twice changes nothing, no bare digits survive, only
+the canonical punctuation survives, nothing is emptied.
+[`audit/frontend_check.txt`](audit/frontend_check.txt) has those results and a
+sample of input → output pairs, which you can reproduce line for line by
+running `amharic_text.py` yourself.
 
 Training config (full resolved config with data manifest hashes in
 [`training_config.json`](training_config.json)): AdamW, lr 2e-05, cosine,

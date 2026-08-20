@@ -94,5 +94,7 @@
     "t3_file": "t3_mtl23ls_v3.safetensors",
     "t3_sha256": "5abca8321ede76f8e61f1cc0d19aea6c946b28871017ce8726f8a69203f05953"
   },
-  "trainer_git_sha": "df2769b9b639293027beb7138ecb7f20d54b5084"
+  "trainer_git_sha": "df2769b9b639293027beb7138ecb7f20d54b5084",
+  "label_frontend_sha256_shipped": "d19894cbd55bb13b27081beb31cab30adb10364767a2153a851cfdda150f5f34",
+  "label_frontend_changed_since_training": "Two fixes after training, both to punctuation the model already knows: a dotted abbreviation's trailing dot mid-sentence is no longer read as a full stop, and '::' (how the Ethiopic full stop is typed on an ASCII keyboard) now maps to ። instead of ፤. Labels were built with the SHA in label_frontend_sha256."
 }
